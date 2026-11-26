@@ -74,7 +74,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.035em; text-wra
   .mm-link .n { font-family: var(--mono); font-size: 12px; letter-spacing: .08em; color: var(--ember); transform: translateY(-0.9em); }
   .mm-link[aria-current="page"] .t, .mm-link:active .t { background: linear-gradient(90deg, var(--ember), var(--flare)); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .mm-foot { display: grid; gap: 18px; justify-items: start; padding-top: 28px; opacity: 0; transform: translateY(20px); transition: opacity .35s ease, transform .35s ease; }
-  .mm-mail { font-family: var(--mono); font-size: 14px; color: var(--ash); text-decoration: none; }
+  .mm-mail { font-family: var(--mono); font-size: 14px; color: var(--ash); text-decoration: none; padding-block: 12px; }
   .menu-open .mm-link, .menu-open .mm-foot { opacity: 1; transform: none; transition: opacity .6s cubic-bezier(.2,.7,.2,1), transform .7s cubic-bezier(.2,.7,.2,1), color .2s; transition-delay: calc(.22s + var(--i) * .06s); }
   .menu-open { overflow: hidden; }
 }
@@ -446,3 +446,41 @@ footer a { text-decoration: none; } footer a:hover { color: var(--cream); }
 .prose strong { color: var(--cream); font-weight: 500; }
 .prose a, .inquiry .note a { color: var(--flare); text-decoration: none; border-bottom: 1px solid rgba(255,154,92,.35); }
 .prose a:hover, .inquiry .note a:hover { color: var(--cream); border-color: var(--cream); }
+
+/* Ascea product page: the studio layout with Ascea's mint accent */
+.ascea { --ember: #2FD6A3; --flare: #8CF5D6; --rust: #0E6B5C; }
+.ascea .grad-em { background-image: linear-gradient(90deg, #2FD6A3, #8CF5D6, #5ED8F0, #2FD6A3); }
+.ascea .btn.ember { background: linear-gradient(135deg, #2FD6A3, #8CF5D6); color: #052A22; box-shadow: 0 10px 34px rgba(47,214,163,.35); }
+.panel.glow.ascea::before { background: radial-gradient(circle, rgba(47,214,163,0.20) 0%, rgba(14,107,92,0.08) 40%, transparent 70%); }
+.panel.ember.ascea::after { background: radial-gradient(ellipse at 50% 0%, #0a1a1a 58%, transparent 59%), radial-gradient(ellipse at 50% 0%, rgba(47,214,163,0.9) 0%, rgba(47,214,163,0.45) 52%, rgba(14,107,92,0.2) 62%, transparent 70%); }
+.ascea-hero { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: clamp(32px, 5vw, 72px); align-items: center; }
+.ascea-badge { display: flex; align-items: center; gap: 14px; }
+.ascea-badge img { border-radius: 14px; box-shadow: 0 10px 30px rgba(47,214,163,.25); }
+.ascea-badge b { display: block; color: var(--cream); font-weight: 500; font-size: 20px; letter-spacing: -0.02em; }
+.ascea-badge small { color: var(--ash); font-size: 13px; }
+.ctas-row { display: flex; flex-wrap: wrap; gap: 12px; }
+.fine { font-size: 14px; color: var(--ash); margin: 0; }
+.phone-frame { display: block; margin: 0; border-radius: 42px; padding: 9px; background: linear-gradient(160deg, #1d2a33, #0b1117); border: 1px solid rgba(255,255,255,.08); box-shadow: 0 40px 90px rgba(0,0,0,.55), 0 0 0 1px rgba(47,214,163,.08); }
+.phone-frame img { display: block; width: 100%; height: auto; border-radius: 34px; }
+.phones { position: relative; height: clamp(420px, 46vw, 620px); }
+.phones .phone-frame { position: absolute; width: clamp(200px, 22vw, 290px); }
+.phones .back { right: 4%; top: 0; transform: rotate(6deg); opacity: .92; }
+.phones .front { left: 6%; top: 12%; transform: rotate(-4deg); animation: float 7s ease-in-out infinite; }
+.phones.small { height: clamp(380px, 40vw, 540px); }
+.ascea-steps { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+.ascea-step { display: grid; gap: 10px; align-content: start; }
+.ascea-step .phone-frame { width: min(100%, 300px); margin: 0 auto 18px; }
+.ascea-step .pn, .ways .pn { font-family: var(--mono); font-size: 12px; color: var(--ember); }
+.ascea-step h3 { font-size: 22px; color: var(--cream); }
+.ascea-step p { font-size: 15px; color: var(--ash); margin: 0; }
+.visual.phone-solo { border: 0; padding: 0; background: none; box-shadow: none; display: grid; place-items: center; overflow: visible; }
+.visual.phone-solo .phone-frame { width: min(100%, 320px); }
+.ascea .ticks li::before { background: var(--ember); }
+@media (max-width: 860px) {
+  .ascea-hero { grid-template-columns: 1fr; }
+  .phones { height: 520px; max-width: 420px; margin: 0 auto; width: 100%; }
+  .phones .phone-frame { width: 210px; }
+  .ascea-steps { grid-template-columns: 1fr; }
+}
+.chapter .visual figcaption a { color: var(--flare); text-decoration: none; border-bottom: 1px solid rgba(255,154,92,.35); }
+.panel.cream.ascea::before { background: radial-gradient(circle, rgba(47,214,163,0.10) 0%, transparent 65%); }
