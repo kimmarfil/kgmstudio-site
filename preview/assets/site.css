@@ -36,8 +36,7 @@ h1, h2, h3, h4 { margin: 0; font-weight: 500; letter-spacing: -0.035em; text-wra
 .nav .bar { display: flex; align-items: center; justify-content: space-between; gap: 20px; height: 76px; padding-left: var(--gutter-l); padding-right: var(--gutter-r); }
 .nav.scrolled { background: rgba(7, 8, 13, 0.72); backdrop-filter: blur(16px) saturate(1.2); -webkit-backdrop-filter: blur(16px) saturate(1.2); border-bottom-color: var(--line); }
 .logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; color: var(--cream); }
-.logo svg { width: 26px; height: 26px; fill: currentColor; transition: transform .5s cubic-bezier(.2,.8,.2,1); }
-.logo:hover svg { transform: rotate(-90deg); }
+.logo svg { width: 26px; height: 26px; fill: currentColor; }
 .word { letter-spacing: -0.035em; line-height: 1; white-space: nowrap; font-size: 22px; }
 .word b { font-weight: 500; } .word span { font-weight: 200; }
 .links { display: flex; gap: 34px; }
@@ -284,16 +283,6 @@ footer a { text-decoration: none; } footer a:hover { color: var(--cream); }
   .js .reveal.pre { opacity: 1; transform: none; }
 }
 
-/* Worked with: client logo wall */
-.logo-wall { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin-top: 56px; }
-.logo-wall a { text-decoration: none; position: relative; display: grid; place-items: center; min-height: 150px; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; transition: background .4s; }
-.logo-wall a::before { content: ""; position: absolute; inset: 0; background: radial-gradient(220px circle at 50% 120%, rgba(255,90,31,0.28), transparent 70%); opacity: 0; transition: opacity .4s; }
-.logo-wall a:hover::before, .logo-wall a:focus-visible::before { opacity: 1; }
-.logo-wall img { position: relative; height: var(--h, 30px); width: auto; max-width: 100%; opacity: .85; transition: opacity .4s, transform .4s cubic-bezier(.2,.7,.2,1); }
-.logo-wall a:hover img, .logo-wall a:focus-visible img { opacity: 1; transform: translateY(-3px); }
-.logo-wall .more { color: var(--ash); font-size: 14px; display: grid; gap: 6px; text-align: center; }
-.logo-wall .more b { color: var(--cream); font-weight: 500; font-size: 17px; }
-@media (max-width: 860px) { .logo-wall { grid-template-columns: repeat(2, 1fr); } .logo-wall a { min-height: 110px; padding: 20px; } .logo-wall img { height: calc(var(--h, 30px) * .8); } }
 .marquee.logos .row { align-items: center; gap: 72px; padding-right: 72px; }
 .marquee.logos { max-width: 1160px; }
 .marquee.logos img { height: var(--h, 24px); width: auto; flex: none; opacity: .85; transition: opacity .3s; }
