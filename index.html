@@ -99,8 +99,9 @@ footer nav { display: flex; gap: 18px; }
 </div>
 
 <script>
-// The current build is stored encrypted in preview.enc (AES-256-GCM, key from the password via
-// PBKDF2-SHA256). Without the right password the page content can't be read, even from the source.
+// Every page of the full site is stored encrypted under preview/ (AES-256-GCM, key from the password
+// via PBKDF2-SHA256). This form checks the password against the preview home page, then keeps it in
+// this tab's sessionStorage so each preview page can unlock itself. Closing the tab forgets it.
 (function () {
   var form = document.getElementById('unlock');
   var pw = document.getElementById('pw');
@@ -108,6 +109,7 @@ footer nav { display: flex; gap: 18px; }
   var go = document.getElementById('go');
   function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
   function say(text, err) { hint.textContent = text; hint.className = err ? 'hint err' : 'hint'; }
+  if (location.hash === '#preview') { pw.focus(); say('Enter the preview password to keep browsing the build.'); }
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
@@ -115,16 +117,21 @@ footer nav { display: flex; gap: 18px; }
     if (!window.crypto || !crypto.subtle) { say('This browser can\'t open the preview. Try a recent Chrome, Safari or Edge.', true); return; }
     go.disabled = true; say('Unlocking…');
     try {
-      var res = await fetch('preview.enc', { cache: 'no-store' });
+      var res = await fetch('preview/index.enc', { cache: 'no-store' });
       if (!res.ok) throw new Error('missing');
       var box = await res.json();
       var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw.value), 'PBKDF2', false, ['deriveKey']);
       var key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64(box.salt), iterations: box.iterations, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
-      var plain;
-      try { plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(box.iv) }, key, b64(box.data)); }
+      try { await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(box.iv) }, key, b64(box.data)); }
       catch (err) { go.disabled = false; pw.select(); say('That password didn\'t work. Check it and try again.', true); return; }
-      var html = new TextDecoder().decode(plain);
-      document.open(); document.write(html); document.close();
+      var next = 'preview/index.html';
+      try {
+        sessionStorage.setItem('kgmPreview', pw.value);
+        var saved = sessionStorage.getItem('kgmNext');
+        if (saved && saved.indexOf('/preview/') !== -1) next = saved;
+        sessionStorage.removeItem('kgmNext');
+      } catch (err) { say('This browser is blocking storage, so the preview can\'t open. Try a normal (not private) window.', true); go.disabled = false; return; }
+      location.href = next;
     } catch (err) {
       go.disabled = false;
       say('The preview isn\'t available right now. Email hello@kgmstudio.ca.', true);
