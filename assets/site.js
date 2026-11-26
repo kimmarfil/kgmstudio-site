@@ -7,12 +7,23 @@
   function onScroll() { if (nav) nav.classList.toggle('scrolled', window.scrollY > 12); }
   onScroll(); window.addEventListener('scroll', onScroll, { passive: true });
 
-  // Mobile menu
-  var btn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu');
-  if (btn && menu) btn.addEventListener('click', function () {
-    var open = menu.hidden; menu.hidden = !open; btn.setAttribute('aria-expanded', String(open));
-    if (open) nav.classList.add('scrolled'); else onScroll();
-  });
+  // Mobile menu: a full-screen panel that opens as a circle from the button, links rising in turn
+  var btn = document.getElementById('menuBtn'), menu = document.getElementById('mobileMenu'), docEl = document.documentElement;
+  if (btn && menu) {
+    menu.hidden = false; menu.setAttribute('aria-hidden', 'true'); menu.inert = true;
+    var setMenu = function (open) {
+      docEl.classList.toggle('menu-open', open);
+      btn.setAttribute('aria-expanded', String(open));
+      btn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+      menu.setAttribute('aria-hidden', String(!open)); menu.inert = !open;
+      if (open) { nav.classList.add('scrolled'); var first = menu.querySelector('a'); if (first) setTimeout(function () { first.focus({ preventScroll: true }); }, 350); }
+      else onScroll();
+    };
+    btn.addEventListener('click', function () { setMenu(!docEl.classList.contains('menu-open')); });
+    menu.addEventListener('click', function (e) { if (e.target.closest('a')) setMenu(false); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && docEl.classList.contains('menu-open')) { setMenu(false); btn.focus(); } });
+    window.addEventListener('resize', function () { if (innerWidth > 860 && docEl.classList.contains('menu-open')) setMenu(false); });
+  }
 
   // Twinkling stars in the hero
   var stars = document.querySelector('.stars');

@@ -25,7 +25,7 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://kgmstudio.ca/#studio","name":"KGM Studio","alternateName":"kgmstudio","url":"https://kgmstudio.ca/","logo":"https://kgmstudio.ca/assets/brand/icon-512.png","image":"https://kgmstudio.ca/assets/brand/og-image.jpg","email":"hello@kgmstudio.ca","description":"A Toronto studio that designs and builds websites, online stores, mobile apps and brands.","address":{"@type":"PostalAddress","addressLocality":"Toronto","addressRegion":"ON","addressCountry":"CA"},"areaServed":["Canada","United States"],"knowsAbout":["Web design","Web development","Shopify","Ecommerce","Mobile app development","Brand identity","SEO","Website migration"]},{"@type":"WebPage","@id":"https://kgmstudio.ca/work/spidertech.html","url":"https://kgmstudio.ca/work/spidertech.html","name":"SpiderTech: theme upgrade, packs and bundles · KGM Studio","description":"A major Shopify theme upgrade for SpiderTech that kept every customization, plus pack and bundle selling and a cleaner cart.","inLanguage":"en-CA","isPartOf":{"@id":"https://kgmstudio.ca/#website"},"about":{"@id":"https://kgmstudio.ca/#studio"},"primaryImageOfPage":"https://kgmstudio.ca/assets/work/spidertech-desktop.jpg"},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://kgmstudio.ca/"},{"@type":"ListItem","position":2,"name":"Work","item":"https://kgmstudio.ca/work/"},{"@type":"ListItem","position":3,"name":"SpiderTech","item":"https://kgmstudio.ca/work/spidertech.html"}]},{"@type":"CreativeWork","@id":"https://kgmstudio.ca/work/spidertech.html#work","name":"SpiderTech","headline":"SpiderTech: theme upgrade, packs and bundles · KGM Studio","description":"A major Shopify theme upgrade for SpiderTech that kept every customization, plus pack and bundle selling and a cleaner cart.","url":"https://kgmstudio.ca/work/spidertech.html","image":"https://kgmstudio.ca/assets/work/spidertech-desktop.jpg","creator":{"@id":"https://kgmstudio.ca/#studio"},"inLanguage":"en-CA"}]}</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500&family=JetBrains+Mono:wght@400;500&display=swap">
-<link rel="stylesheet" href="../assets/site.css?v=12">
+<link rel="stylesheet" href="../assets/site.css?v=13">
 </head>
 <body>
 <div class="sky" aria-hidden="true"></div>
@@ -46,11 +46,15 @@
       <a href="../studio.html">Studio</a>
     </nav>
     <a class="btn ember small cta" href="../contact.html">Get in touch<span class="arr"><svg><use href="#arrow"/></svg></span></a>
-    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu"><svg viewBox="0 0 18 18"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    <button class="menu-btn" id="menuBtn" type="button" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu"><span class="bars" aria-hidden="true"><i></i><i></i></span></button>
   </div>
-  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile" hidden>
-    <a href="../index.html">Home</a><a href="../work/index.html">Work</a><a href="../services.html">Capabilities</a><a href="../studio.html">Studio</a><a href="../contact.html">Contact</a>
-  </nav>
+  <div class="mobile-menu" id="mobileMenu" hidden>
+    <nav class="mm-links" aria-label="Mobile"><a class="mm-link" href="../index.html" style="--i:0"><span class="n">01</span><span class="t">Home</span></a><a class="mm-link" href="../work/index.html" style="--i:1"><span class="n">02</span><span class="t">Work</span></a><a class="mm-link" href="../services.html" style="--i:2"><span class="n">03</span><span class="t">Capabilities</span></a><a class="mm-link" href="../studio.html" style="--i:3"><span class="n">04</span><span class="t">Studio</span></a><a class="mm-link" href="../contact.html" style="--i:4"><span class="n">05</span><span class="t">Contact</span></a></nav>
+    <div class="mm-foot" style="--i:5">
+      <a class="btn ember" href="../contact.html">Get in touch<span class="arr"><svg><use href="#arrow"/></svg></span></a>
+      <a class="mm-mail" href="mailto:hello@kgmstudio.ca">hello@kgmstudio.ca</a>
+    </div>
+  </div>
 </header>
 
 <main class="wrap-page">
@@ -156,6 +160,6 @@
     <nav aria-label="Footer"><a href="../work/index.html">Work</a><a href="../services.html">Capabilities</a><a href="../studio.html">Studio</a><a href="../contact.html">Contact</a><span>hello@kgmstudio.ca</span></nav>
   </div>
 </footer>
-<script src="../assets/site.js?v=11"></script>
+<script src="../assets/site.js?v=13"></script>
 </body>
 </html>
