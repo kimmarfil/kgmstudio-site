@@ -420,3 +420,15 @@ footer a { text-decoration: none; } footer a:hover { color: var(--cream); }
 @media (prefers-reduced-motion: reduce) {
   .mobile-menu, .menu-open .mobile-menu, .mm-link, .mm-foot, .menu-btn .bars i { transition: none !important; }
 }
+.ways { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.ways .tile { grid-column: auto; display: flex; flex-direction: column; gap: 12px; }
+.ways .pn { font-family: var(--mono); font-size: 12px; color: var(--ember); }
+.ways .tile.t-ember .pn { color: rgba(255,240,230,.85); }
+.ways-list { list-style: none; margin: 4px 0 0; padding: 0; display: grid; gap: 8px; font-size: 15px; color: var(--text); }
+.ways-list li { position: relative; padding-left: 18px; }
+.ways-list li::before { content: ""; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 1px; background: var(--ember); transform: rotate(45deg); }
+.ways .tile.t-ember .ways-list li::before { background: var(--cream); }
+.ways .related { margin-top: auto; padding-top: 10px; }
+.ways .tile.t-ember .related, .ways .tile.t-ember .related a { color: var(--cream); border-color: rgba(255,240,230,.5); }
+@media (max-width: 860px) { .ways { grid-template-columns: 1fr; } }
+.ways .related { align-self: stretch; text-align: left; }
