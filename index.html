@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en-CA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>kgmstudio · Coming soon</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="KGM Studio builds Shopify stores, apps and websites in Ontario, Canada. Our new website is coming soon.">
+<meta property="og:title" content="kgmstudio">
+<meta property="og:description" content="Shopify stores, apps and websites. New website coming soon.">
+<meta property="og:image" content="https://kgmstudio.ca/assets/brand/og-image.jpg">
+<meta name="theme-color" content="#0B0D14">
+<meta name="robots" content="noindex">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" href="assets/brand/mark-ember.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="assets/brand/icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lexend:wght@200;300;400;500&family=JetBrains+Mono:wght@400&display=swap">
+<style>
+/* Layout: one centred column on Night, a single ember glow from the lower-left corner. */
+:root {
+  --night: #0B0D14; --carbon: #12151D; --ember: #FF5A1F; --flare: #FF9A5C;
+  --cream: #F7F4F0; --text: #D9D5CF; --ash: #9AA0AA; --line: rgba(247,244,240,0.14); --bad: #FF8A7A;
+  --sans: "Lexend", "Segoe UI", system-ui, sans-serif; --mono: "JetBrains Mono", ui-monospace, Consolas, monospace;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--night); color: var(--text); font-family: var(--sans); font-weight: 300;
+  background-image: radial-gradient(ellipse 70% 60% at 0% 100%, rgba(255,90,31,0.42), rgba(154,53,16,0.18) 45%, rgba(11,13,20,0) 75%);
+  background-attachment: fixed;
+}
+.page {
+  min-height: 100%; display: grid; grid-template-rows: 1fr auto; padding-block: 48px 28px;
+  padding-left: max(24px, env(safe-area-inset-left, 0px)); padding-right: max(24px, env(safe-area-inset-right, 0px));
+}
+main { display: grid; place-content: center; justify-items: center; text-align: center; gap: 28px; }
+.lock { display: flex; align-items: center; gap: clamp(12px, 2vw, 20px); color: var(--cream); }
+.lock svg { width: clamp(40px, 7vw, 64px); height: auto; fill: var(--cream); }
+.word { font-size: clamp(40px, 8vw, 76px); letter-spacing: -0.035em; line-height: 1; white-space: nowrap; }
+.word b { font-weight: 500; } .word span { font-weight: 200; }
+.tag { font-size: clamp(17px, 2.2vw, 20px); max-width: 34ch; line-height: 1.6; }
+.soon { font-family: var(--mono); font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--flare); display: inline-flex; align-items: center; gap: 10px; }
+.soon i { width: 7px; height: 7px; border-radius: 50%; background: var(--ember); box-shadow: 0 0 0 4px rgba(255,90,31,0.18); }
+.mail { font-family: var(--mono); font-size: 15px; color: var(--cream); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 2px; }
+.mail:hover { border-color: var(--ember); }
+
+form { margin-top: 8px; display: grid; gap: 10px; justify-items: center; width: min(360px, 100%); }
+.field { display: flex; width: 100%; border: 1px solid var(--line); border-radius: 999px; background: rgba(18,21,29,0.7); padding: 4px; transition: border-color .2s; }
+.field:focus-within { border-color: rgba(255,154,92,0.6); }
+input { flex: 1; min-width: 0; background: transparent; border: 0; outline: none; color: var(--cream); font: 400 15px var(--sans); padding: 10px 16px; }
+input::placeholder { color: var(--ash); }
+button { border: 0; border-radius: 999px; background: var(--ember); color: var(--night); font: 500 14px var(--sans); padding: 10px 18px; cursor: pointer; transition: background .2s; }
+button:hover { background: var(--flare); }
+button:disabled { opacity: .6; cursor: wait; }
+:focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
+.hint { font-size: 13px; color: var(--ash); min-height: 1.2em; }
+.hint.err { color: var(--bad); }
+label.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+
+footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--ash); }
+footer a { color: var(--ash); text-decoration: none; } footer a:hover { color: var(--cream); }
+footer nav { display: flex; gap: 18px; }
+@media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <mask id="cut"><rect width="100" height="100" fill="#fff"/><rect x="32" y="32" width="36" height="36" fill="#000"/></mask>
+    <symbol id="mark" viewBox="8 8 84 84"><g mask="url(#cut)"><rect x="8" y="8" width="60" height="60" rx="12"/><rect x="32" y="32" width="60" height="60" rx="12"/></g></symbol>
+  </defs>
+</svg>
+
+<div class="page">
+  <main>
+    <span class="soon"><i></i>New website coming soon</span>
+    <div class="lock" role="img" aria-label="kgmstudio">
+      <svg viewBox="0 0 84 84" aria-hidden="true"><use href="#mark"/></svg>
+      <span class="word"><b>kgm</b><span>studio</span></span>
+    </div>
+    <p class="tag">Shopify stores, apps and websites, built in Ontario.</p>
+    <a class="mail" href="mailto:hello@kgmstudio.ca">hello@kgmstudio.ca</a>
+
+    <form id="unlock" autocomplete="off">
+      <label class="sr" for="pw">Preview password</label>
+      <div class="field">
+        <input id="pw" name="pw" type="password" placeholder="Preview password" autocomplete="current-password" required>
+        <button id="go" type="submit">View build</button>
+      </div>
+      <div class="hint" id="hint" aria-live="polite">Have a preview password? Enter it to see the current build.</div>
+    </form>
+  </main>
+
+  <footer>
+    <span>© 2026 KGM Studio · Ontario, Canada</span>
+    <nav aria-label="Footer"><a href="ascea/privacy.html">Ascea privacy</a><a href="ascea/support.html">Ascea support</a></nav>
+  </footer>
+</div>
+
+<script>
+// The current build is stored encrypted in preview.enc (AES-256-GCM, key from the password via
+// PBKDF2-SHA256). Without the right password the page content can't be read, even from the source.
+(function () {
+  var form = document.getElementById('unlock');
+  var pw = document.getElementById('pw');
+  var hint = document.getElementById('hint');
+  var go = document.getElementById('go');
+  function b64(s) { var b = atob(s), a = new Uint8Array(b.length); for (var i = 0; i < b.length; i++) a[i] = b.charCodeAt(i); return a; }
+  function say(text, err) { hint.textContent = text; hint.className = err ? 'hint err' : 'hint'; }
+
+  form.addEventListener('submit', async function (e) {
+    e.preventDefault();
+    if (!pw.value) { say('Enter the preview password first.', true); return; }
+    if (!window.crypto || !crypto.subtle) { say('This browser can\'t open the preview. Try a recent Chrome, Safari or Edge.', true); return; }
+    go.disabled = true; say('Unlocking…');
+    try {
+      var res = await fetch('preview.enc', { cache: 'no-store' });
+      if (!res.ok) throw new Error('missing');
+      var box = await res.json();
+      var base = await crypto.subtle.importKey('raw', new TextEncoder().encode(pw.value), 'PBKDF2', false, ['deriveKey']);
+      var key = await crypto.subtle.deriveKey({ name: 'PBKDF2', salt: b64(box.salt), iterations: box.iterations, hash: 'SHA-256' }, base, { name: 'AES-GCM', length: 256 }, false, ['decrypt']);
+      var plain;
+      try { plain = await crypto.subtle.decrypt({ name: 'AES-GCM', iv: b64(box.iv) }, key, b64(box.data)); }
+      catch (err) { go.disabled = false; pw.select(); say('That password didn\'t work. Check it and try again.', true); return; }
+      var html = new TextDecoder().decode(plain);
+      document.open(); document.write(html); document.close();
+    } catch (err) {
+      go.disabled = false;
+      say('The preview isn\'t available right now. Email hello@kgmstudio.ca.', true);
+    }
+  });
+})();
+</script>
+</body>
+</html>
