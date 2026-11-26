@@ -283,3 +283,14 @@ footer a { text-decoration: none; } footer a:hover { color: var(--cream); }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .js .reveal.pre { opacity: 1; transform: none; }
 }
+
+/* Worked with: client logo wall */
+.logo-wall { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); border-left: 1px solid var(--line); margin-top: 56px; }
+.logo-wall a { text-decoration: none; position: relative; display: grid; place-items: center; min-height: 150px; padding: 28px; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); overflow: hidden; transition: background .4s; }
+.logo-wall a::before { content: ""; position: absolute; inset: 0; background: radial-gradient(220px circle at 50% 120%, rgba(255,90,31,0.28), transparent 70%); opacity: 0; transition: opacity .4s; }
+.logo-wall a:hover::before, .logo-wall a:focus-visible::before { opacity: 1; }
+.logo-wall img { position: relative; height: var(--h, 30px); width: auto; max-width: 100%; filter: brightness(0) invert(1); opacity: .6; transition: opacity .4s, transform .4s cubic-bezier(.2,.7,.2,1); }
+.logo-wall a:hover img, .logo-wall a:focus-visible img { opacity: 1; transform: translateY(-3px); }
+.logo-wall .more { color: var(--ash); font-size: 14px; display: grid; gap: 6px; text-align: center; }
+.logo-wall .more b { color: var(--cream); font-weight: 500; font-size: 17px; }
+@media (max-width: 860px) { .logo-wall { grid-template-columns: repeat(2, 1fr); } .logo-wall a { min-height: 110px; padding: 20px; } .logo-wall img { height: calc(var(--h, 30px) * .8); } }
