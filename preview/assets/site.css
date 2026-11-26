@@ -347,3 +347,18 @@ footer a { text-decoration: none; } footer a:hover { color: var(--cream); }
 .hero { overflow-x: clip; overflow-y: visible; }
 .stats, .hero + * { position: relative; z-index: 1; }
 @media (max-width: 860px) { .horizon::before { mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 100%); -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 100%); } }
+
+/* Capabilities page */
+.jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin-top: 10px; }
+.jump a { text-decoration: none; font-size: 14px; color: var(--text); padding: 10px 16px; border-radius: 999px; border: 1px solid var(--line-2); transition: border-color .2s, color .2s, background .2s; }
+.jump a:hover { color: var(--cream); border-color: rgba(255,90,31,.6); background: rgba(255,90,31,.08); }
+.related { font-size: 14px; color: var(--ash); margin: 0; }
+.related a { color: var(--flare); text-decoration: none; border-bottom: 1px solid rgba(255,154,92,.35); }
+.related a:hover { color: var(--cream); border-color: var(--cream); }
+.chapter .visual.real a { display: block; text-decoration: none; }
+.chapter .visual.appcard, .chapter .visual.brandcard { display: grid; place-items: center; gap: 22px; text-align: center; padding: clamp(36px, 6vw, 72px) 24px; background: radial-gradient(circle at 50% 40%, rgba(255,90,31,0.10), transparent 65%), rgba(22,25,34,0.5); }
+.chapter .visual figcaption { font-size: 13px; color: var(--ash); }
+.bc-row { display: flex; align-items: center; gap: 18px; color: var(--cream); }
+.bc-mark { width: clamp(56px, 7vw, 84px); height: auto; fill: currentColor; }
+.bc-word { font-size: clamp(34px, 5vw, 58px); letter-spacing: -0.04em; } .bc-word b { font-weight: 500; } .bc-word span { font-weight: 200; }
+.bc-sw { display: flex; gap: 8px; } .bc-sw i { width: clamp(30px, 4vw, 44px); aspect-ratio: 1; border-radius: 10px; border: 1px solid rgba(255,255,255,.08); }
