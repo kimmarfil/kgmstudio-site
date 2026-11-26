@@ -3,14 +3,20 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>kgmstudio · Coming soon</title>
-<meta name="claude:viewport-fit-sides" content="cover">
+<title>KGM Studio · Web design, online stores and apps in Toronto</title>
 <meta name="description" content="KGM Studio designs and builds websites, online stores, apps and brands in Toronto, Canada. Our new website is coming soon.">
-<meta property="og:title" content="kgmstudio">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="KGM Studio">
+<meta property="og:locale" content="en_CA">
+<meta property="og:url" content="https://kgmstudio.ca/">
+<meta property="og:title" content="KGM Studio">
 <meta property="og:description" content="Websites, online stores, apps and brands. New website coming soon.">
 <meta property="og:image" content="https://kgmstudio.ca/assets/brand/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0B0D14">
-<meta name="robots" content="noindex">
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"ProfessionalService","@id":"https://kgmstudio.ca/#studio","name":"KGM Studio","alternateName":"kgmstudio","url":"https://kgmstudio.ca/","logo":"https://kgmstudio.ca/assets/brand/icon-512.png","image":"https://kgmstudio.ca/assets/brand/og-image.jpg","email":"hello@kgmstudio.ca","description":"A Toronto studio that designs and builds websites, online stores, mobile apps and brands.","address":{"@type":"PostalAddress","addressLocality":"Toronto","addressRegion":"ON","addressCountry":"CA"},"areaServed":["Canada","United States"]},{"@type":"WebSite","@id":"https://kgmstudio.ca/#website","url":"https://kgmstudio.ca/","name":"KGM Studio","inLanguage":"en-CA","publisher":{"@id":"https://kgmstudio.ca/#studio"}}]}</script>
+<meta name="robots" content="index, follow, max-image-preview:large">
+<link rel="canonical" href="https://kgmstudio.ca/">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" href="assets/brand/mark-ember.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="assets/brand/icon-192.png">
@@ -57,12 +63,14 @@ button:disabled { opacity: .6; cursor: wait; }
 :focus-visible { outline: 2px solid var(--ember); outline-offset: 3px; }
 .hint { font-size: 13px; color: var(--ash); min-height: 1.2em; }
 .hint.err { color: var(--bad); }
-label.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.sr { position: absolute; white-space: nowrap; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
 footer { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; color: var(--ash); }
 footer a { color: var(--ash); text-decoration: none; } footer a:hover { color: var(--cream); }
 footer nav { display: flex; gap: 18px; }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
+h1.lock { margin: 0; font: inherit; color: inherit; }
+.tag { text-wrap: balance; }
 </style>
 </head>
 <body>
@@ -76,10 +84,11 @@ footer nav { display: flex; gap: 18px; }
 <div class="page">
   <main>
     <span class="soon"><i></i>New website coming soon</span>
-    <div class="lock" role="img" aria-label="kgmstudio">
+    <h1 class="lock">
       <svg viewBox="0 0 84 84" aria-hidden="true"><use href="#mark"/></svg>
-      <span class="word"><b>kgm</b><span>studio</span></span>
-    </div>
+      <span class="word" aria-hidden="true"><b>kgm</b><span>studio</span></span>
+      <span class="sr">KGM Studio</span>
+    </h1>
     <p class="tag">Websites, stores, apps and brands, built in Toronto.</p>
     <a class="mail" href="mailto:hello@kgmstudio.ca">hello@kgmstudio.ca</a>
 
