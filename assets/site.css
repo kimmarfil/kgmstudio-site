@@ -432,3 +432,17 @@ footer a { text-decoration: none; } footer a:hover { color: var(--cream); }
 .ways .tile.t-ember .related, .ways .tile.t-ember .related a { color: var(--cream); border-color: rgba(255,240,230,.5); }
 @media (max-width: 860px) { .ways { grid-template-columns: 1fr; } }
 .ways .related { align-self: stretch; text-align: left; }
+
+/* Long-form text (privacy policy) */
+.updated { font-family: var(--mono); font-size: 12px; letter-spacing: .06em; text-transform: uppercase; color: var(--ash); margin: 0; }
+.prose { max-width: 760px; margin: 0 auto; font-size: 17px; color: var(--text); }
+.prose h2 { font-size: clamp(24px, 2.6vw, 30px); color: var(--cream); letter-spacing: -0.02em; margin: 48px 0 14px; }
+.prose h2:first-child { margin-top: 0; }
+.prose h3 { font-size: 18px; color: var(--cream); margin: 24px 0 8px; }
+.prose p { margin: 0 0 14px; }
+.prose ul { margin: 0 0 14px; padding-left: 0; list-style: none; display: grid; gap: 10px; }
+.prose li { position: relative; padding-left: 22px; }
+.prose li::before { content: ""; position: absolute; left: 2px; top: .62em; width: 6px; height: 6px; border-radius: 1px; background: var(--ember); transform: rotate(45deg); }
+.prose strong { color: var(--cream); font-weight: 500; }
+.prose a, .inquiry .note a { color: var(--flare); text-decoration: none; border-bottom: 1px solid rgba(255,154,92,.35); }
+.prose a:hover, .inquiry .note a:hover { color: var(--cream); border-color: var(--cream); }
