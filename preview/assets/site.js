@@ -28,6 +28,21 @@
     }
   }
 
+  // Quiet starfield behind every page (fixed, so it stays put while content scrolls)
+  var sky = document.querySelector('.sky');
+  if (sky) {
+    var n = Math.round(Math.min(140, (innerWidth * innerHeight) / 11000));
+    for (var j = 0; j < n; j++) {
+      var st = document.createElement('i');
+      st.style.left = (Math.random() * 100) + '%';
+      st.style.top = (Math.random() * 100) + '%';
+      if (Math.random() > 0.9) st.className = 'b';
+      if (reduce) { st.style.animation = 'none'; st.style.opacity = '0.3'; }
+      else { st.style.animationDelay = (Math.random() * 5).toFixed(2) + 's'; st.style.animationDuration = (3.5 + Math.random() * 5).toFixed(2) + 's'; }
+      sky.appendChild(st);
+    }
+  }
+
   // Reveal on scroll (only for things below the fold, so the first screen is never hidden)
   if (!reduce && 'IntersectionObserver' in window) {
     document.documentElement.classList.add('js');
@@ -126,6 +141,46 @@
       cx.globalCompositeOperation = 'source-over';
       if (pts.length || sparks.length || Math.hypot(mx - hx, my - hy) > 0.5) requestAnimationFrame(frame); else { running = false; frame.last = 0; }
     }
+  }
+
+  // Contact form: sent through FormSubmit to hello@kgmstudio.ca, without leaving the page
+  var form = document.getElementById('inquiry');
+  if (form) form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var st = document.getElementById('inqStatus'), btn = form.querySelector('button[type=submit]'), bad = null;
+    ['name', 'email', 'message'].forEach(function (n) {
+      var el = form.elements[n], ok = el.value.trim() && (n !== 'email' || /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(el.value.trim()));
+      el.setAttribute('aria-invalid', ok ? 'false' : 'true'); if (!ok && !bad) bad = el;
+    });
+    if (bad) { st.className = 'status err'; st.textContent = 'Please add your name, a valid email and a message.'; bad.focus(); return; }
+    if (form.elements._honey.value) return; // bots fill the hidden field
+    var data = {}; new FormData(form).forEach(function (v, k) { data[k] = v; });
+    data._replyto = data.email;
+    btn.disabled = true; st.className = 'status'; st.textContent = 'Sending…';
+    fetch('https://formsubmit.co/ajax/hello@kgmstudio.ca', { method: 'POST', headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' }, body: JSON.stringify(data) })
+      .then(function (r) { return r.json().then(function (j) { if (!r.ok || String(j.success) !== 'true') throw j; }); })
+      .then(function () { form.reset(); st.className = 'status ok'; st.textContent = 'Thanks, your message is on its way. We’ll reply by email soon.'; })
+      .catch(function () { st.className = 'status err'; st.textContent = 'That didn’t send. Please email us at hello@kgmstudio.ca instead.'; })
+      .then(function () { btn.disabled = false; });
+  });
+
+  // Tap a screenshot to see it large (on phones it can be scrolled sideways)
+  var shots = document.querySelectorAll('.chapter .visual.real img, .hero-shot .browser img');
+  if (shots.length) {
+    var zb = document.createElement('div'); zb.className = 'zoom'; zb.hidden = true;
+    zb.setAttribute('role', 'dialog'); zb.setAttribute('aria-modal', 'true'); zb.setAttribute('aria-label', 'Screenshot');
+    zb.innerHTML = '<button class="close" type="button" aria-label="Close">×</button><img alt=""><p class="hint">Swipe sideways to see the whole screen</p>';
+    document.body.appendChild(zb);
+    var zi = zb.querySelector('img'), lastFocus = null;
+    function closeZoom() { zb.hidden = true; document.body.style.overflow = ''; if (lastFocus) lastFocus.focus(); }
+    shots.forEach(function (im) {
+      im.setAttribute('tabindex', '0'); im.setAttribute('role', 'button');
+      function open() { lastFocus = im; zi.src = im.currentSrc || im.src; zi.alt = im.alt; zb.hidden = false; document.body.style.overflow = 'hidden'; zb.scrollTop = 0; requestAnimationFrame(function () { zb.scrollLeft = (zb.scrollWidth - zb.clientWidth) / 2; }); if (!zi.complete) zi.onload = function () { zb.scrollLeft = (zb.scrollWidth - zb.clientWidth) / 2; }; zb.querySelector('.close').focus(); }
+      im.addEventListener('click', open);
+      im.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(); } });
+    });
+    zb.addEventListener('click', function (e) { if (e.target === zb || e.target.classList.contains('close') || e.target === zi && innerWidth > 860) closeZoom(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !zb.hidden) closeZoom(); });
   }
 
   // Copy email
