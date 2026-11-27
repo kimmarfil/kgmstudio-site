@@ -498,3 +498,11 @@ footer a { text-decoration: none; } footer a:hover { color: var(--cream); }
 :root:has(main .ascea) .sky i.b { box-shadow: 0 0 6px rgba(140,245,214,0.6); }
 :root:has(main .ascea) .related a { border-bottom-color: rgba(140,245,214,.35); }
 :root:has(main .ascea) .field input:focus, :root:has(main .ascea) .field textarea:focus { border-color: rgba(47,214,163,0.7); box-shadow: 0 0 0 4px rgba(47,214,163,0.15); }
+
+/* Ascea: the web app and a phone together inside a chapter (2026-11-27) */
+.chapter .visual.real .device-pair { padding-bottom: 8%; }
+.chapter .visual.real .device-pair .browser { width: 92%; }
+.chapter .visual.real .device-pair .phone { width: 24%; right: 0; border-width: 5px; border-radius: 22px; }
+.chapter.flip .visual.real .device-pair .browser { margin-left: auto; }
+.chapter.flip .visual.real .device-pair .phone { right: auto; left: 0; }
+@media (max-width: 600px) { .chapter .visual.real .device-pair .phone { width: 30%; border-width: 3px; border-radius: 14px; } }
