@@ -3,88 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Parent approval · Ascea</title>
 <meta name="robots" content="noindex">
-<title>Parent approval · Ascea · KGM Studio</title>
-<link rel="stylesheet" href="../styles.css">
-<style>
-  .go { display: inline-block; background: #13B57F; color: #062A1E; font-weight: 600; border: 0; border-radius: 999px; padding: 13px 22px; font-size: 16px; cursor: pointer; }
-  .go.danger { background: #C8423B; color: #fff; }
-  .go[disabled] { opacity: .6; cursor: default; }
-  #msg { margin-top: 16px; }
-</style>
+<link rel="canonical" href="https://ascea.ca/consent/">
+<meta http-equiv="refresh" content="0; url=https://ascea.ca/consent/">
+<script>location.replace('https://ascea.ca/consent/' + location.search + location.hash);</script>
+<style>body{font:16px/1.6 system-ui,sans-serif;background:#070F1A;color:#F2FBF8;display:grid;place-items:center;min-height:100vh;margin:0;padding:24px;text-align:center}a{color:#8CF5D6}</style>
 </head>
 <body>
-<header>
-  <a class="brand" href="../">KGM STUDIO</a>
-  <nav><a href="./support.html">Support</a><a href="./privacy.html">Privacy</a></nav>
-</header>
-<main>
-  <h1 id="title">Parent approval</h1>
-  <div class="card" id="box"><p>Loading…</p></div>
-  <p class="meta">Questions? Email <a href="mailto:hello@kgmstudio.ca">hello@kgmstudio.ca</a>. Read the <a href="./privacy.html">Ascea privacy policy</a>.</p>
-</main>
-<footer>© 2026 KGM Studio · <a href="./support.html">Support</a> · <a href="./privacy.html">Privacy</a></footer>
-<script>
-  // Opened from the email Ascea sends a parent. Nothing changes until the button is pressed (so email link
-  // scanners that open the link can't approve by accident).
-  var FN = 'https://hqeqjjkrgjxywkivdsjw.supabase.co/functions/v1/parent-consent';
-  var KEY = 'sb_publishable_VtbGrXD8eGUiy6iDlAEWnA_9Ob72zd3'; // public key, safe to publish
-  var q = new URLSearchParams(location.search);
-  var token = q.get('t'), revokeToken = q.get('r');
-  var box = document.getElementById('box'), title = document.getElementById('title');
-
-  function call(body) {
-    return fetch(FN, { method: 'POST', headers: { 'Content-Type': 'application/json', apikey: KEY }, body: JSON.stringify(body) })
-      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); });
-  }
-  function esc(s) { return String(s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
-  function show(html) { box.innerHTML = html; }
-  function fail(d) { show('<p>' + esc((d && d.error) || 'Something went wrong. Please try again.') + '</p>'); }
-
-  if (token) {
-    title.textContent = 'Approve Ascea for your child';
-    call({ action: 'peek', token: token }).then(function (res) {
-      if (!res.ok) return fail(res.d);
-      var name = esc(res.d.student);
-      if (res.d.done) return show('<p>You already approved Ascea for <b>' + name + '</b>. Nothing more to do.</p>');
-      show(
-        '<p><b>' + name + '</b> is 13 or younger, so Ascea needs a parent or guardian to approve before their stories are backed up or sent to the AI.</p>' +
-        '<ul><li>Stories, saved scholarships and applications are backed up in Canada (Montreal).</li>' +
-        '<li>Story text is sent to Anthropic\'s Claude AI (United States) only to suggest tags and draft essays. It isn\'t used to train AI.</li>' +
-        '<li>You see a read-only summary in your Ascea app, and you can withdraw approval at any time.</li></ul>' +
-        '<p>By approving, you confirm you are ' + name + '\'s parent or legal guardian.</p>' +
-        '<p><button class="go" id="yes">I\'m ' + name + '\'s parent: approve</button></p><div id="msg"></div>'
-      );
-      document.getElementById('yes').onclick = function () {
-        this.disabled = true;
-        call({ action: 'confirm', token: token }).then(function (r) {
-          if (!r.ok) return fail(r.d);
-          show('<p><b>Thank you.</b> Ascea is approved for ' + name + '. Their stories now back up, and smart suggestions are on. We sent you a confirmation email with a link to withdraw at any time.</p>');
-        }, function () { fail(); });
-      };
-    }, function () { fail(); });
-  } else if (revokeToken) {
-    title.textContent = 'Withdraw approval';
-    call({ action: 'peek-revoke', revoke: revokeToken }).then(function (res) {
-      if (!res.ok) return fail(res.d);
-      var name = esc(res.d.student);
-      if (res.d.done) return show('<p>Approval for <b>' + name + '</b> is already withdrawn.</p>');
-      show(
-        '<p>If you withdraw, <b>' + name + '</b>\'s stories stay only on their phone, and smart suggestions stop, until a parent approves again.</p>' +
-        '<p>To also delete what is already backed up, ' + name + ' can delete their account in the app (Account, Danger zone), or email us.</p>' +
-        '<p><button class="go danger" id="no">Withdraw approval</button></p>'
-      );
-      document.getElementById('no').onclick = function () {
-        this.disabled = true;
-        call({ action: 'revoke', revoke: revokeToken }).then(function (r) {
-          if (!r.ok) return fail(r.d);
-          show('<p>Approval withdrawn. ' + name + '\'s stories now stay only on their phone.</p>');
-        }, function () { fail(); });
-      };
-    }, function () { fail(); });
-  } else {
-    show('<p>This page opens from the approval email Ascea sends to parents. If you\'re looking for help, see <a href="./support.html">Support</a>.</p>');
-  }
-</script>
+<p>Ascea's parent approval page has moved to <a href="https://ascea.ca/consent/">ascea.ca/consent</a>.</p>
 </body>
 </html>
