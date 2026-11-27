@@ -484,3 +484,17 @@ footer a { text-decoration: none; } footer a:hover { color: var(--cream); }
 }
 .chapter .visual figcaption a { color: var(--flare); text-decoration: none; border-bottom: 1px solid rgba(255,154,92,.35); }
 .panel.cream.ascea::before { background: radial-gradient(circle, rgba(47,214,163,0.10) 0%, transparent 65%); }
+
+/* ---------- Ascea page: the whole page in Ascea teal (header, buttons, glows, stars, hover light) ---------- */
+/* Pages with an .ascea section get the teal palette everywhere, not only inside those sections. */
+:root:has(main .ascea) { --ember: #2FD6A3; --flare: #8CF5D6; --rust: #0E6B5C; }
+:root:has(main .ascea) .btn.ember, :root:has(main .ascea) .btn.ink { background: linear-gradient(180deg, #8CF5D6, #2FD6A3); color: #052A22; box-shadow: 0 8px 30px rgba(47,214,163,0.28), inset 0 1px 0 rgba(255,255,255,0.35); }
+:root:has(main .ascea) .btn.ember:hover, :root:has(main .ascea) .btn.ink:hover { box-shadow: 0 12px 44px rgba(47,214,163,0.45), inset 0 1px 0 rgba(255,255,255,0.35); }
+:root:has(main .ascea) .btn:hover, :root:has(main .ascea) .pill:hover { border-color: rgba(140,245,214,0.6); }
+:root:has(main .ascea) .menu-open .menu-btn { border-color: rgba(47,214,163,.6); background: rgba(47,214,163,.12); }
+:root:has(main .ascea) .mobile-menu { background: radial-gradient(120% 70% at 100% 0%, rgba(47,214,163,0.20), transparent 60%), radial-gradient(90% 60% at 0% 100%, rgba(14,107,92,0.25), transparent 65%), rgba(7,8,13,0.992); }
+:root:has(main .ascea) .glass::after, :root:has(main .ascea) .tile::after, :root:has(main .ascea) .step::after, :root:has(main .ascea) .result::after { background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), rgba(47,214,163,0.16), transparent 45%); }
+:root:has(main .ascea) .tile:hover { border-color: rgba(140,245,214,0.35); }
+:root:has(main .ascea) .sky i.b { box-shadow: 0 0 6px rgba(140,245,214,0.6); }
+:root:has(main .ascea) .related a { border-bottom-color: rgba(140,245,214,.35); }
+:root:has(main .ascea) .field input:focus, :root:has(main .ascea) .field textarea:focus { border-color: rgba(47,214,163,0.7); box-shadow: 0 0 0 4px rgba(47,214,163,0.15); }

@@ -119,6 +119,13 @@
     }, { passive: true });
     document.addEventListener('mouseleave', function () { live = false; });
     var TAIL = 260; // ms of trail kept behind the head, same on any refresh rate
+    // Colours: KGM ember by default; Ascea teal on the Ascea page. tail(t) = trail colour at freshness t (0..1).
+    var teal = !!document.querySelector('main .ascea');
+    var tail = teal
+      ? function (t) { return 'rgba(' + Math.round(47 + 120 * t) + ',' + Math.round(214 + 34 * t) + ',' + Math.round(163 + 70 * t) + ','; }
+      : function (t) { return 'rgba(255,' + Math.round(90 + 110 * t) + ',' + Math.round(31 + 100 * t) + ','; };
+    var spark = teal ? 'rgba(140,245,214,' : 'rgba(255,154,92,';
+    var head = teal ? ['rgba(236,255,250,0.95)', 'rgba(140,245,214,0.55)', 'rgba(47,214,163,0)'] : ['rgba(255,244,232,0.95)', 'rgba(255,154,92,0.55)', 'rgba(255,90,31,0)'];
     function frame(now) {
       // The head eases toward the cursor (time-corrected), leaving a tail of fading points
       var dt = Math.min(64, now - (frame.last || now)); frame.last = now;
@@ -134,19 +141,19 @@
       cx.globalCompositeOperation = 'lighter';
       for (var i = pts.length - 1; i > 0; i--) {
         var t = Math.max(0, 1 - (now - pts[i].t) / TAIL);
-        cx.strokeStyle = 'rgba(255,' + Math.round(90 + 110 * t) + ',' + Math.round(31 + 100 * t) + ',' + (t * 0.95).toFixed(3) + ')';
+        cx.strokeStyle = tail(t) + (t * 0.95).toFixed(3) + ')';
         cx.lineWidth = 0.8 + t * 4; cx.lineCap = 'round';
         cx.beginPath(); cx.moveTo(pts[i].x, pts[i].y); cx.lineTo(pts[i - 1].x, pts[i - 1].y); cx.stroke();
       }
       for (var k = sparks.length - 1; k >= 0; k--) {
         var s = sparks[k]; s.x += s.vx * dt / 16.7; s.y += s.vy * dt / 16.7; s.life -= 0.035 * dt / 16.7;
         if (s.life <= 0) { sparks.splice(k, 1); continue; }
-        cx.fillStyle = 'rgba(255,154,92,' + (s.life * 0.9).toFixed(3) + ')';
+        cx.fillStyle = spark + (s.life * 0.9).toFixed(3) + ')';
         cx.beginPath(); cx.arc(s.x, s.y, 1.1 * s.life + 0.3, 0, 6.283); cx.fill();
       }
       if (pts.length && now - pts[0].t < TAIL) {
         var g = cx.createRadialGradient(pts[0].x, pts[0].y, 0, pts[0].x, pts[0].y, 14);
-        g.addColorStop(0, 'rgba(255,244,232,0.95)'); g.addColorStop(0.25, 'rgba(255,154,92,0.55)'); g.addColorStop(1, 'rgba(255,90,31,0)');
+        g.addColorStop(0, head[0]); g.addColorStop(0.25, head[1]); g.addColorStop(1, head[2]);
         cx.fillStyle = g; cx.beginPath(); cx.arc(pts[0].x, pts[0].y, 14, 0, 6.283); cx.fill();
       }
       cx.globalCompositeOperation = 'source-over';
